@@ -1,22 +1,21 @@
 #include<iostream>
 using namespace std;
 
-//Sentinel search for an array of size 5
-int SentinelSearch(int A[5], int key){
-    //int n = sizeof(A) / sizeof(A[0]);
+//Sentinel search for an array with n elements
+int SentinelSearch(int A[], int n, int key){
 
     int last;
-    last = A[5-1];
-    A[5-1] = key;
+    last = A[n-1];
+    A[n-1] = key;
 
     int i=0;
     while(A[i] != key){
         i++;
     }
 
-    A[5-1] = last;
+    A[n-1] = last;
 
-    if(i < 5-1 || key == A[5-1]){
+    if(i < n-1 || key == A[n-1]){
         return i;
     }else {
         return -1;
@@ -24,12 +23,12 @@ int SentinelSearch(int A[5], int key){
 }
 
 int main(){
-    int A[5] = {70 ,34, 52, 35, 47};
+    int A[] = {70 ,34, 52, 35, 47};
     int k;
     cout<<"Enter key: ";
     cin>>k;
-
-    int result = SentinelSearch(A, k);
+    int len = sizeof(A)/sizeof(A[0]);
+    int result = SentinelSearch(A, len, k);
 
     if(result == -1){
         cout<<"Not found";
